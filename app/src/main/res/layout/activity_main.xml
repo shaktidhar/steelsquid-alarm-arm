@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    tools:context=".MainActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="@color/background">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Arm/Disarm this alarm"
+        android:id="@+id/textViewIp"
+        android:textStyle="bold"
+        android:singleLine="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center_horizontal"
+        android:background="@color/foreground"
+        android:focusableInTouchMode="true"
+        android:textColor="@color/background"
+        android:onClick="onHelpServer" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextIp"
+        android:singleLine="true"
+        android:layout_below="@+id/textViewIp"
+        android:layout_alignLeft="@+id/textViewIp"
+        android:layout_alignStart="@+id/textViewIp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextUser"
+        android:layout_below="@+id/editTextIp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextPassword"
+        android:layout_below="@+id/editTextUser"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="When phone is this number of meters"
+        android:id="@+id/textViewMeters"
+        android:textStyle="bold"
+        android:layout_below="@+id/editTextPassword"
+        android:layout_alignLeft="@+id/editTextPassword"
+        android:layout_alignStart="@+id/editTextPassword"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:background="@color/foreground"
+        android:textColor="@color/background"
+        android:onClick="onHelpDistance" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editTextMeters"
+        android:singleLine="true"
+        android:layout_below="@+id/textViewMeters"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="From this location"
+        android:id="@+id/textViewLocation"
+        android:textStyle="bold"
+        android:layout_below="@+id/editTextMeters"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/background"
+        android:background="@color/foreground"
+        android:onClick="onHelpLocation" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextLat"
+        android:inputType="numberDecimal"
+        android:singleLine="true"
+        android:layout_below="@+id/textViewLocation"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextLong"
+        android:inputType="numberDecimal"
+        android:singleLine="true"
+        android:layout_below="@+id/editTextLat"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get current location"
+        android:id="@+id/buttonLocation"
+        android:onClick="onGetLocation"
+        android:layout_below="@+id/editTextLong"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Disarm when connected to this wifi"
+        android:id="@+id/textViewWifiHead"
+        android:textStyle="bold"
+        android:layout_below="@+id/buttonLocation"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:background="@color/foreground"
+        android:textColor="@color/background"
+        android:onClick="onHelpWifi" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select wifi"
+        android:id="@+id/buttonWifi"
+        android:onClick="onWifi"
+        android:layout_below="@+id/textViewWifi"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="No home network selected"
+        android:id="@+id/textViewWifi"
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="@android:color/holo_purple"
+        android:layout_below="@+id/textViewWifiHead"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/textViewWifiHead"
+        android:layout_alignEnd="@+id/textViewWifiHead" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="When you are finished above"
+        android:id="@+id/textViewActivate"
+        android:textStyle="bold"
+        android:layout_below="@+id/buttonWifi"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/background"
+        android:background="@color/foreground"
+        android:onClick="onHelpActivate" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enable Alarm Arm"
+        android:id="@+id/buttonWidgetEnable"
+        android:onClick="onEnable"
+        android:layout_below="@+id/textViewActivate"
+        android:layout_alignLeft="@+id/textViewActivate"
+        android:layout_alignStart="@+id/textViewActivate"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Alarm Arm is Disabled"
+        android:id="@+id/textViewWidgetStatus"
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/buttonWidgetEnable" />
+
+</RelativeLayout>
+
+</ScrollView>

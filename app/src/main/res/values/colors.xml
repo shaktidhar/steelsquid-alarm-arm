@@ -1,0 +1,10 @@
+<resources>
+    <color name="ok">@android:color/holo_green_dark</color>
+    <color name="error">@android:color/holo_red_dark</color>
+    <color name="foreground">#272727</color>
+    <color name="background">#ededed</color>
+    <color name="enable">@android:color/holo_blue_dark</color>
+    <color name="disable">@android:color/holo_orange_dark</color>
+    <color name="arm">@android:color/holo_red_dark</color>
+    <color name="disarm">@android:color/holo_green_dark</color>
+</resources>
