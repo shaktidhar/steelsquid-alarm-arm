@@ -83,10 +83,15 @@ public class BackgroundService extends Service  implements LocationListener, Sen
 
     public int onStartCommand(Intent intent, int flags, int startId) {
         enabled = sharedPref.getBoolean(MainActivity.PREFERENCE_ENABLED, false);
+        ip = sharedPref.getString(MainActivity.PREFERENCE_IP, null);
+        user = sharedPref.getString(MainActivity.PREFERENCE_USER, null);
+        password = sharedPref.getString(MainActivity.PREFERENCE_PASSWORD, null);
+        if (sendTask == null || sendTask.getStatus() == AsyncTask.Status.FINISHED) {
+            sendTask = new SendTask();
+            Boolean b = null;
+            sendTask.execute(b);
+        }
         if(enabled) {
-            ip = sharedPref.getString(MainActivity.PREFERENCE_IP, null);
-            user = sharedPref.getString(MainActivity.PREFERENCE_USER, null);
-            password = sharedPref.getString(MainActivity.PREFERENCE_PASSWORD, null);
             wifi = sharedPref.getString(MainActivity.PREFERENCE_WIFI, null);
             meters = Integer.parseInt(sharedPref.getString(MainActivity.PREFERENCE_METERS, null));
             double latitude = Double.parseDouble(sharedPref.getString(MainActivity.PREFERENCE_LAT, null));
@@ -240,12 +245,17 @@ public class BackgroundService extends Service  implements LocationListener, Sen
                 HttpParams params = httpClient.getParams();
                 HttpConnectionParams.setConnectionTimeout(params, 10000);
                 HttpConnectionParams.setSoTimeout(params, 10000);
-                String statusString="False";
-                if(status[0]){
-                    statusString="True";
+                HttpPost httpPost;
+                if(status[0]!=null) {
+                    String statusString = "False";
+                    if (status[0]) {
+                        statusString = "True";
+                    }
+                    httpPost = new HttpPost(ip + "/alarm_app%7c" + androidId + "%7c" + statusString);
                 }
-                HttpPost httpPost = new HttpPost(ip+"/alarm_app%7c"+androidId+"%7c"+statusString);
-
+                else{
+                    httpPost = new HttpPost(ip + "/alarm_app");
+                }
                 httpPost.addHeader(BasicScheme.authenticate(
                         new UsernamePasswordCredentials(user, password),
                         "UTF-8", false));
