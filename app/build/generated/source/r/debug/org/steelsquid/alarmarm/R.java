@@ -899,13 +899,13 @@ containing a value of this type.
         public static final int submit_area=0x7f0d0039;
         public static final int tabMode=0x7f0d0002;
         public static final int textView=0x7f0d004d;
-        public static final int textView2=0x7f0d004f;
         public static final int textViewActivate=0x7f0d004a;
         public static final int textViewIp=0x7f0d003d;
         public static final int textViewLocation=0x7f0d0043;
         public static final int textViewMeters=0x7f0d0041;
         public static final int textViewWidgetArm=0x7f0d0050;
         public static final int textViewWidgetStatus=0x7f0d004c;
+        public static final int textViewWidgetTime=0x7f0d004f;
         public static final int textViewWifi=0x7f0d0049;
         public static final int textViewWifiHead=0x7f0d0047;
         public static final int title=0x7f0d002b;

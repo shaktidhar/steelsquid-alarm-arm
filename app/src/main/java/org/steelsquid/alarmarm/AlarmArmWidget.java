@@ -29,6 +29,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Implementation of App Widget functionality.
  */
@@ -82,9 +85,11 @@ public class AlarmArmWidget extends AppWidgetProvider {
             if (BackgroundService.isArmed()) {
                 views.setTextColor(R.id.textViewWidgetArm, context.getResources().getColor(R.color.arm));
                 views.setTextViewText(R.id.textViewWidgetArm, "Armed");
+                views.setTextViewText(R.id.textViewWidgetTime, BackgroundService.getLastCheck());
             } else {
                 views.setTextColor(R.id.textViewWidgetArm, context.getResources().getColor(R.color.disarm));
                 views.setTextViewText(R.id.textViewWidgetArm, "Disarmed");
+                views.setTextViewText(R.id.textViewWidgetTime, BackgroundService.getLastCheck());
             }
         }
 

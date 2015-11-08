@@ -39,6 +39,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * This wille xecute in the background to check if phone is away from the house
  */
@@ -67,6 +70,7 @@ public class BackgroundService extends Service  implements LocationListener, Sen
     private boolean isMoving=true;
     private int updateCounter = 0;
     private boolean continueRear;
+    private static String lastCheck="";
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -126,8 +130,8 @@ public class BackgroundService extends Service  implements LocationListener, Sen
             if (timeSeconds<10){
                 timeSeconds=10;
             }
-            else if(timeSeconds>300){
-                timeSeconds=300;
+            else if(timeSeconds>600){
+                timeSeconds=600;
             }
         }
         continueRear=continueToRear;
@@ -260,7 +264,7 @@ public class BackgroundService extends Service  implements LocationListener, Sen
 
                 ResponseHandler<String> responseHandler=new BasicResponseHandler();
                 String answer = httpClient.execute(httpPost, responseHandler);
-                if(answer.equals("True")){
+                if(answer.equals("True")) {
                     BackgroundService.isArmed(true);
                 }
                 else{
@@ -369,6 +373,11 @@ public class BackgroundService extends Service  implements LocationListener, Sen
         return isDeviceArmed;
     }
     public static void isArmed(boolean isArm){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        BackgroundService.lastCheck = sdf.format(new Date())+" ";
         isDeviceArmed = isArm;
+    }
+    public static String getLastCheck(){
+        return lastCheck;
     }
 }

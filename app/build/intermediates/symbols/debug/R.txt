@@ -318,13 +318,13 @@ int id split_action_bar 0x7f0d001e
 int id submit_area 0x7f0d0039
 int id tabMode 0x7f0d0002
 int id textView 0x7f0d004d
-int id textView2 0x7f0d004f
 int id textViewActivate 0x7f0d004a
 int id textViewIp 0x7f0d003d
 int id textViewLocation 0x7f0d0043
 int id textViewMeters 0x7f0d0041
 int id textViewWidgetArm 0x7f0d0050
 int id textViewWidgetStatus 0x7f0d004c
+int id textViewWidgetTime 0x7f0d004f
 int id textViewWifi 0x7f0d0049
 int id textViewWifiHead 0x7f0d0047
 int id title 0x7f0d002b
