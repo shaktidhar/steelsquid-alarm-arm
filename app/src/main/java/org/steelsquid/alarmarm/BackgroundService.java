@@ -169,52 +169,50 @@ public class BackgroundService extends Service  implements LocationListener, Sen
     Runnable updater = new Runnable() {
         @Override
         public void run() {
-            if(wifi!=null){
-                String currentWifi = getCurrentSsid();
-                if(currentWifi!=null && currentWifi.equals(wifi)){
-                    if(homeWifi==null || !homeWifi) {
-                        stopGpsUpdate();
-                        homeWifi=true;
-                        lastStatus=false;
-                        sendLastStatus();
+            if(enabled) {
+                if (wifi != null) {
+                    String currentWifi = getCurrentSsid();
+                    if (currentWifi != null && currentWifi.equals(wifi)) {
+                        if (homeWifi == null || !homeWifi) {
+                            stopGpsUpdate();
+                            homeWifi = true;
+                            lastStatus = false;
+                            sendLastStatus();
+                        }
+                    } else {
+                        if (homeWifi == null || homeWifi) {
+                            setGpsUpdate(true);
+                            homeWifi = false;
+                        }
                     }
                 }
-                else{
-                    if(homeWifi==null|| homeWifi) {
-                        setGpsUpdate(true);
-                        homeWifi = false;
+                if (!homeWifi) {
+                    if (movingCounter == 12) {
+                        if (isMoving) {
+                            stopGpsUpdate();
+                            isMoving = false;
+                            lastStatus = false;
+                            sendLastStatus();
+                        }
+                    } else {
+                        if (!isMoving) {
+                            setGpsUpdate(true);
+                            isMoving = true;
+                        }
+                        movingCounter++;
                     }
                 }
-            }
-            if(!homeWifi){
-                if(movingCounter == 12){
-                    if(isMoving){
-                        stopGpsUpdate();
-                        isMoving=false;
-                        lastStatus=false;
-                        sendLastStatus();
-                    }
+                if (updateCounter == 30) {
+                    updateCounter = 0;
+                    setGpsUpdate(false);
+                } else {
+                    updateCounter++;
                 }
-                else{
-                    if(!isMoving) {
-                        setGpsUpdate(true);
-                        isMoving = true;
-                    }
-                    movingCounter++;
-                }
-            }
-            if(updateCounter==30){
-                updateCounter=0;
-                setGpsUpdate(false);
-            }
-            else{
-                updateCounter++;
-            }
-            try {
-                handler.removeCallbacks(updater);
-            }
-            catch(Exception e){
+                try {
+                    handler.removeCallbacks(updater);
+                } catch (Exception e) {
 
+                }
             }
             handler.postDelayed(updater, 10000);
         }
